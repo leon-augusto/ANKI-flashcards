@@ -1,18 +1,29 @@
+from kivy.app import App
+from kivy.uix.screenmanager import ScreenManager, Screen
+from custumizados import CustumButton
+
 import contentfunctions
 
-option = 1
-language = 'fr'
 
-# "en": "English",
-# "es": "Spanish",
-# "fr": "French",
-# "zh-CN": "Chinese (Simplified)",
+class Gerenciador(ScreenManager):
+    pass
 
-if option == 1:
-    contentfunctions.content_basic_cards(language)
+class PanelPrincipal(Screen):
+    def gen_basic_cards(self):
+        lang = self.ids.lang.text
+        contentfunctions.content_basic_cards(lang)
 
-elif option == 2:
-    contentfunctions.content_intermediary_cards(language)
+    def gen_intermediary_cards(self):
+        lang = self.ids.lang.text
+        contentfunctions.content_intermediary_cards(lang)
 
-elif option == 3:
-    contentfunctions.content_advanced_cards()
+    def gen_advanced_cards(self):
+        pass
+
+
+class Test(App):
+    def build(self):
+        return Gerenciador()
+
+
+Test().run()

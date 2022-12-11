@@ -1,7 +1,18 @@
 import genanki
+import gtts
 
 
-def gen_deck(deck):
+def genereteaudios(phrases, language):
+    filesmp3 = []
+    for phrase in phrases:
+        texttospeech = gtts.gTTS(phrase, lang=language)
+        filename = phrase.replace('.', '').lower().replace(' ', '-')[:] + '.mp3'
+        texttospeech.save(filename)
+        filesmp3.append(filename)
+    return filesmp3
+
+
+def genereteapkg(deck):
     front = deck[0]
     verse = deck[1]
 
@@ -37,4 +48,4 @@ def gen_deck(deck):
 
         my_deck.add_note(my_note)
 
-    genanki.Package(my_deck).write_to_file('output.apkg')
+    genanki.Package(my_deck).write_to_file('my-new-cards.apkg')

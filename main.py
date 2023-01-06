@@ -1,31 +1,41 @@
-from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen
-
-from custumizados import CustumButton
-
-from functions.creates import create_basic_cards, create_intermediary_cards
+import os
+from kivymd.app import MDApp
+from kaki.app import App
+from kivy.factory import Factory
 
 
-class Gerenciador(ScreenManager):
-    pass
+class GenFlashcards(MDApp, App):
+
+    DEBUG = 1
+
+    KV_FILES = {
+        os.path.join(os.getcwd(), 'screens/screenmanager.kv'),
+        os.path.join(os.getcwd(), 'screens/menu/menu.kv'),
+        os.path.join(os.getcwd(), 'screens/basic_cards_screen/basic_cards_screen.kv'),
+        os.path.join(os.getcwd(), 'screens/intermediary_cards_screen/intermediary_cards_screen.kv'),
+
+    }
+
+    CLASSES = {
+        'MainScreenManager': 'screens.screenmanager',
+        'Menu': 'screens.menu.menu',
+        'BasicCardsScreen': 'screens.basic_cards_screen.basic_cards_screen',
+        'IntermediaryCardsScreen': 'screens.intermediary_cards_screen.intermediary_cards_screen',
+    }
+
+    AUTORELOADER_PATHS = [
+        ('.', {'recursive': True}),
+    ]
+
+    def build_app(self):
+        return Factory.MainScreenManager()
+
+    def theme_dark(self):
+        self.theme_cls.theme_style = 'Dark'
+
+    def theme_light(self):
+        self.theme_cls.theme_style = 'Light'
 
 
-class PanelPrincipal(Screen):
-    def gen_basic_cards(self):
-        lang = self.ids.lang.text
-        create_basic_cards(lang)
-
-    def gen_intermediary_cards(self):
-        lang = self.ids.lang.text
-        create_intermediary_cards(lang)
-
-    def gen_advanced_cards(self):
-        pass
-
-
-class Test(App):
-    def build(self):
-        return Gerenciador()
-
-
-Test().run()
+if __name__ == '__main__':
+    GenFlashcards().run()

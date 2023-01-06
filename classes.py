@@ -1,4 +1,4 @@
-from functions.generates import genereteaudios
+from functions.generates import gen_audios
 
 
 class CardBasicLevel:
@@ -7,7 +7,7 @@ class CardBasicLevel:
         self.backcard = backcard
         self.newword = newword
         self.translatedword = translatedword
-        self.audio = genereteaudios(phrases=self.frontcard, language=language)
+        self.audio = gen_audios(phrases=self.frontcard, language=language)
 
 
 class CardIntermediaryLevel:
@@ -18,7 +18,7 @@ class CardIntermediaryLevel:
         self.sentido = sentido
         self.translatedword = translatedword
         self.backcard = []
-        self.audio = genereteaudios(phrases=self.frontcard, language=language)
+        self.audio = gen_audios(phrases=self.frontcard, language=language)
 
 
 class CardAdvancedLevel:

@@ -1,18 +1,28 @@
 import genanki
 import gtts
 
+def gen_filename(base, extension):
+    name = base
+    special_chars = ['!', '@', '#', '$', '%', '¨', '&', '*', '(', ')', '_', '+', '=', '§', '/', '?', '°', '®', 'ŧ', '←', '↓', '→', 'ø', 'þ', '`', '´', '{', '[', 'ª', '}', ']', 'º', '~', '^', ';', ':', '>', '.', '<', ',', 'µ', '”', '“', '©', '»', '«', 'æ', 'ß', 'ð', 'đ', 'ŋ', 'ħ', 'ˀ', 'ĸ', 'ł', 'ˇ', '\ ', '|', '+', '-', '*', '/', '"']
+    for character in special_chars:
+        if character in name:
+            name = name.replace(character, '')
+    name = name.replace(' ', '-').lower()
+    name += extension
+    return name
 
-def genereteaudios(phrases, language):
-    filesmp3 = []
+
+def gen_audios(phrases, language):
+    files = []
     for phrase in phrases:
-        texttospeech = gtts.gTTS(phrase, lang=language)
-        filename = phrase.replace('.', '').lower().replace(' ', '-')[:] + '.mp3'
-        texttospeech.save(filename)
-        filesmp3.append(filename)
-    return filesmp3
+        speech = gtts.gTTS(phrase, lang=language)
+        filename = gen_filename(base=phrase, extension='.mp3')
+        speech.save('media//listening//' + filename)
+        files.append(filename)
+    return files
 
 
-def genereteapkg(deck):
+def gen_apkg(deck):
     front = deck[0]
     verse = deck[1]
 
@@ -49,3 +59,7 @@ def genereteapkg(deck):
         my_deck.add_note(my_note)
 
     genanki.Package(my_deck).write_to_file('my-new-cards.apkg')
+
+
+if __name__ == '__main__':
+    print(gen_filename('"Hello, World!"', '.mp3'))

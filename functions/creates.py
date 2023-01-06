@@ -1,7 +1,7 @@
 import pandas as pd
 
 from classes import CardBasicLevel, CardIntermediaryLevel
-from functions.generates import genereteapkg
+from functions.generates import gen_apkg
 from functions.intermediates import struturecard
 
 
@@ -15,7 +15,7 @@ def create_basic_cards(language):
 
     objeto = CardBasicLevel(frontcard, backcard, newword, translatedword, language)
     deck = struturecard(level='basic', components=objeto)
-    genereteapkg(deck)
+    gen_apkg(deck)
 
 
 def create_intermediary_cards(language):
@@ -29,7 +29,7 @@ def create_intermediary_cards(language):
 
     objeto = CardIntermediaryLevel(frontcard, newword, pron_fon_w, sentido, translatedword, language)
     deck = struturecard(level='intermediary', components=objeto)
-    genereteapkg(deck)
+    gen_apkg(deck)
 
 
 def create_advanced_cards():

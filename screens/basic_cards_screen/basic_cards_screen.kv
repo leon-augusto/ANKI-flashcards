@@ -1,0 +1,35 @@
+<BasicCardsScreen>:
+
+    FloatLayout:
+
+        MDTopAppBar:
+            title: 'Basic Card'
+            elevation: 2
+            pos_hint: {'top': True}
+            left_action_items: [['arrow-left', lambda x: app.callback()]]
+            right_action_items: [['dots-vertical', lambda x: app.callback()]]
+
+        Image:
+            source: 'media/confia.png'
+            size_hint: (0.5, 0.5)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+
+        MDLabel:
+            text: 'Idiom:'
+            halign: "right"
+            size_hint: 0.4, 0.07
+            pos_hint: {'center': (.25, .5)}
+
+        Spinner:
+            id: lang
+            size_hint: 0.4, 0.07
+            pos_hint: {'center': (.75, .5)}
+            text: 'en'
+            values: 'en', 'es', 'fr', 'zh-CN'
+
+        MDFillRoundFlatButton:
+            text: 'Gen BasicCard'
+            font_size: 20
+            pos_hint: {'center_x': 0.5, 'center_y': 0.05}
+            size_hint: .9, .05
+            on_release: root.gen_basic_cards()

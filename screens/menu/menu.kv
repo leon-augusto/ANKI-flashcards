@@ -1,0 +1,35 @@
+<Menu>:
+
+    FloatLayout:
+
+        MDTopAppBar:
+            title: 'Gen ANKI - flashcards'
+            elevation: 2
+            pos_hint: {'top': True}
+            left_action_items: [['menu', lambda x: app.callback()]]
+            right_action_items: [['dots-vertical', lambda x: app.callback()]]
+
+        MDRectangleFlatButton:
+            text: 'Basic\nCard'
+            font_size: 20
+            pos_hint: {'center_x': 0.25, 'center_y': 0.4}
+            size_hint: .4, .2
+            on_release: app.root.current = 'basic_cards_screen'
+
+        MDRectangleFlatButton:
+            text: 'Intermediary\nCard'
+            font_size: 15
+            pos_hint: {'center_x': 0.75, 'center_y': 0.4}
+            size_hint: .4, .2
+
+        MDRectangleFlatButton:
+            text: 'Advanced\nCard'
+            font_size: 20
+            pos_hint: {'center_x': 0.25, 'center_y': 0.15}
+            size_hint: .4, .2
+
+        MDRectangleFlatButton:
+            text: '...'
+            font_size: 15
+            pos_hint: {'center_x': 0.75, 'center_y': 0.15}
+            size_hint: .4, .2

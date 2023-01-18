@@ -35,7 +35,7 @@ class LanguagesScreen(MDScreen):
         self.ids.rv.data = []
         for _lang in _langs.keys():
             if search:
-                if text in _langs.get(_lang):
+                if text.lower() in _langs.get(_lang).lower():
                     add_icon_item(_langs.get(_lang), _lang)
             else:
                 add_icon_item(_langs.get(_lang), _lang)

@@ -1,37 +1,15 @@
-import os
 from kivymd.app import MDApp
-from kaki.app import App
-from kivy.factory import Factory
+from screens.screen_manager import Manager
 
 
-class GenFlashcards(MDApp, App):
+class MainApp(MDApp):
 
-    DEBUG = 1
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.load_all_kv_files(self.directory)
 
-    KV_FILES = {
-        os.path.join(os.getcwd(), 'screens/screen_manager.kv'),
-        os.path.join(os.getcwd(), 'screens/menu/menu.kv'),
-        os.path.join(os.getcwd(), 'screens/cards_first_lvl/cards_first_lvl.kv'),
-        os.path.join(os.getcwd(), 'screens/cards_second_lvl/cards_second_lvl.kv'),
-        os.path.join(os.getcwd(), 'screens/languages/languages.kv'),
-
-    }
-
-    CLASSES = {
-        'Manager': 'screens.screen_manager',
-        'MenuScreen': 'screens.menu.menu',
-        'CardsFirstLevelScreen': 'screens.cards_first_lvl.cards_first_lvl',
-        'CardsSecondLevelScreen': 'screens.cards_second_lvl.cards_second_lvl',
-        'DataFrameScreen': 'screens.dataframe.dataframe',
-        'LanguagesScreen': 'screens.languages.languages',
-    }
-
-    AUTORELOADER_PATHS = [
-        ('.', {'recursive': True}),
-    ]
-
-    def build_app(self):
-        return Factory.Manager()
+    def build(self):
+        return Manager()
 
     def theme_dark(self):
         self.theme_cls.theme_style = 'Dark'
@@ -41,4 +19,4 @@ class GenFlashcards(MDApp, App):
 
 
 if __name__ == '__main__':
-    GenFlashcards().run()
+    MainApp().run()

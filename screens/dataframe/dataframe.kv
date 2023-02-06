@@ -1,0 +1,21 @@
+<DataFrameScreen>:
+
+    MDFloatLayout:
+
+        MDTopAppBar:
+            title: 'DataFrame'
+            elevation: 2
+            pos_hint: {'top': True}
+            left_action_items: [['arrow-left', lambda x: None]]
+            right_action_items: [['dots-vertical', lambda x: app.callback()]]
+
+        MDRoundFlatIconButton:
+            text: 'Upload Dataframe'
+            icon: 'file'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_release: root.file_chooser()
+
+        MDLabel:
+            id: selected_path
+            text: ''
+            halign: 'center'

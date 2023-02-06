@@ -13,6 +13,7 @@ class GenFlashcards(MDApp, App):
         os.path.join(os.getcwd(), 'screens/menu/menu.kv'),
         os.path.join(os.getcwd(), 'screens/basic_cards_screen/basic_cards_screen.kv'),
         os.path.join(os.getcwd(), 'screens/intermediary_cards_screen/intermediary_cards_screen.kv'),
+        os.path.join(os.getcwd(), 'screens/dataframe/dataframe.kv'),
 
     }
 
@@ -21,6 +22,7 @@ class GenFlashcards(MDApp, App):
         'Menu': 'screens.menu.menu',
         'BasicCardsScreen': 'screens.basic_cards_screen.basic_cards_screen',
         'IntermediaryCardsScreen': 'screens.intermediary_cards_screen.intermediary_cards_screen',
+        'DataFrameScreen': 'screens.dataframe.dataframe',
     }
 
     AUTORELOADER_PATHS = [

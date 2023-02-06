@@ -1,3 +1,11 @@
+<DrawerItem@MDNavigationDrawerItem>:
+    icon_color: '#4A463A'
+    text_color: '#4A463A'
+    right_text_color: '#4A463A'
+    focus_color: '#B5DCFB'
+    ripple_color: '#FBDCB5'
+
+
 <Menu>:
 
     FloatLayout:
@@ -6,7 +14,7 @@
             title: 'Gen ANKI - flashcards'
             elevation: 2
             pos_hint: {'top': True}
-            left_action_items: [['menu', lambda x: app.callback()]]
+            left_action_items: [['menu', lambda x: nav_drawer.set_state('open')]]
             right_action_items: [['dots-vertical', lambda x: app.callback()]]
 
         MDRectangleFlatButton:
@@ -14,13 +22,14 @@
             font_size: 20
             pos_hint: {'center_x': 0.25, 'center_y': 0.4}
             size_hint: .4, .2
-            on_release: app.root.current = 'basic_cards_screen'
+            on_release: root.manager.current = 'basic_cards_screen'
 
         MDRectangleFlatButton:
             text: 'Intermediary\nCard'
             font_size: 15
             pos_hint: {'center_x': 0.75, 'center_y': 0.4}
             size_hint: .4, .2
+            on_release: root.manager.current = 'intermediary_cards_screen'
 
         MDRectangleFlatButton:
             text: 'Advanced\nCard'
@@ -33,3 +42,38 @@
             font_size: 15
             pos_hint: {'center_x': 0.75, 'center_y': 0.15}
             size_hint: .4, .2
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        MDNavigationDrawerMenu:
+            MDNavigationDrawerHeader:
+                title: 'KivyMD'
+                text: 'v1.1.1'
+                source: 'media/confia.png'
+                spacing: '10dp'
+                padding: '12dp', 0, 0, '50dp'
+
+            DrawerItem:
+                icon: 'inbox-outline'
+                text: 'Languages'
+                right_text: '4'
+
+            MDNavigationDrawerDivider:
+                color: '#4A463A'
+
+            DrawerItem:
+                icon: 'moon-waning-crescent'
+                text: 'Theme'
+                on_press: app.theme_dark()
+
+            DrawerItem:
+                icon: 'wrench'
+                text: 'Settings'
+
+            DrawerItem:
+                icon: 'help-circle'
+                text: 'Help'
+
+            DrawerItem:
+                icon: 'lifebuoy'
+                text: 'Support GenMyDeck'

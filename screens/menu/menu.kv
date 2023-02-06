@@ -6,7 +6,7 @@
     ripple_color: '#FBDCB5'
 
 
-<Menu>:
+<MenuScreen>:
 
     FloatLayout:
 
@@ -15,31 +15,31 @@
             elevation: 2
             pos_hint: {'top': True}
             left_action_items: [['menu', lambda x: nav_drawer.set_state('open')]]
-            right_action_items: [['dots-vertical', lambda x: app.callback()]]
+            right_action_items: [['dots-vertical', lambda x: None]]
 
         MDRectangleFlatButton:
-            text: 'Basic\nCard'
+            text: 'Card lvl 1'
             font_size: 20
             pos_hint: {'center_x': 0.25, 'center_y': 0.4}
             size_hint: .4, .2
-            on_release: root.manager.current = 'basic_cards_screen'
+            on_release: root.manager.current = 'cards_first_lvl_screen'
 
         MDRectangleFlatButton:
-            text: 'Intermediary\nCard'
-            font_size: 15
+            text: 'Card lvl 2'
+            font_size: 20
             pos_hint: {'center_x': 0.75, 'center_y': 0.4}
             size_hint: .4, .2
-            on_release: root.manager.current = 'intermediary_cards_screen'
+            on_release: root.manager.current = 'cards_second_lvl_screen'
 
         MDRectangleFlatButton:
-            text: 'Advanced\nCard'
+            text: 'Card lvl. 3'
             font_size: 20
             pos_hint: {'center_x': 0.25, 'center_y': 0.15}
             size_hint: .4, .2
 
         MDRectangleFlatButton:
             text: 'DataFrame'
-            font_size: 15
+            font_size: 20
             pos_hint: {'center_x': 0.75, 'center_y': 0.15}
             size_hint: .4, .2
             on_release: root.manager.current = 'dataframe_screen'
@@ -50,7 +50,7 @@
             MDNavigationDrawerHeader:
                 title: 'KivyMD'
                 text: 'v1.1.1'
-                source: 'media/confia.png'
+                source: 'media/logo-project.png'
                 spacing: '10dp'
                 padding: '12dp', 0, 0, '50dp'
 

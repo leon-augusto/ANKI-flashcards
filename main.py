@@ -9,19 +9,19 @@ class GenFlashcards(MDApp, App):
     DEBUG = 1
 
     KV_FILES = {
-        os.path.join(os.getcwd(), 'screens/screenmanager.kv'),
+        os.path.join(os.getcwd(), 'screens/screen_manager.kv'),
         os.path.join(os.getcwd(), 'screens/menu/menu.kv'),
-        os.path.join(os.getcwd(), 'screens/basic_cards_screen/basic_cards_screen.kv'),
-        os.path.join(os.getcwd(), 'screens/intermediary_cards_screen/intermediary_cards_screen.kv'),
+        os.path.join(os.getcwd(), 'screens/cards_first_lvl/cards_first_lvl.kv'),
+        os.path.join(os.getcwd(), 'screens/cards_second_lvl/cards_second_lvl.kv'),
         os.path.join(os.getcwd(), 'screens/dataframe/dataframe.kv'),
 
     }
 
     CLASSES = {
-        'MainScreenManager': 'screens.screenmanager',
-        'Menu': 'screens.menu.menu',
-        'BasicCardsScreen': 'screens.basic_cards_screen.basic_cards_screen',
-        'IntermediaryCardsScreen': 'screens.intermediary_cards_screen.intermediary_cards_screen',
+        'MainScreenManager': 'screens.screen_manager',
+        'MenuScreen': 'screens.menu.menu',
+        'CardsFirstLevelScreen': 'screens.cards_first_lvl.cards_first_lvl',
+        'CardsSecondLevelScreen': 'screens.cards_second_lvl.cards_second_lvl',
         'DataFrameScreen': 'screens.dataframe.dataframe',
     }
 

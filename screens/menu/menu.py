@@ -1,5 +1,5 @@
 from kivymd.uix.screen import MDScreen
 
 
-class Menu(MDScreen):
+class MenuScreen(MDScreen):
     pass

@@ -1,0 +1,60 @@
+<CustomTwoLineListItem>:
+    on_release: root.set_language(self)
+
+
+<LanguagesScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: 'Languages'
+            elevation: 2
+            pos_hint: {'top': True}
+            left_action_items: [['menu', lambda x: None]]
+            right_action_items: [['dots-vertical', lambda x: None]]
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(10)
+            padding: dp(20)
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+
+                MDTextField:
+                    id: search_field
+                    hint_text: 'Search language'
+                    on_text: root.set_list_gtts_langs(self.text, True) if self.text != '' else root.close_list_gtts_langs()
+
+                MDBoxLayout:
+                    id: languages_box
+
+
+            RecycleView:
+                id: rv
+                key_viewclass: 'viewclass'
+                key_size: 'height'
+
+                RecycleBoxLayout:
+                    padding: dp(10)
+                    default_size: None, None
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+
+
+<Language>:
+
+    MDLabel:
+        id: lang
+        size_hint_x: None
+        width: '30sp'
+        halign: 'center'
+    MDIconButton:
+        icon: 'paperclip-remove'
+        icon_size: '20sp'
+        width: '20sp'
+        halign: 'left'
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        on_release: app.root.manager.get_screen('languages_screen').remove_lang(root)

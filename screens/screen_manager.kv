@@ -2,11 +2,14 @@
 #:include CardsFirstLevelScreen cards_first_lvl.cards_first_lvl.CardsFirstLevelScreen
 #:include CardsSecondLevelScreen cards_second_lvl.cards_second_lvl.CardsSecondLevelScreen
 #:include DataFrameScreen dataframe.dataframe.DataFrameScreen
+#:include LanguagesScreen languages.languages.LanguagesScreen
 
 
-<MainScreenManager>:
+<Manager>:
     MenuScreen:
         name: 'menu_screen'
+    LanguagesScreen:
+        name: 'languages_screen'
     CardsFirstLevelScreen:
         name: 'cards_first_lvl_screen'
     CardsSecondLevelScreen:

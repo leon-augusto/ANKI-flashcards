@@ -13,16 +13,17 @@ class GenFlashcards(MDApp, App):
         os.path.join(os.getcwd(), 'screens/menu/menu.kv'),
         os.path.join(os.getcwd(), 'screens/cards_first_lvl/cards_first_lvl.kv'),
         os.path.join(os.getcwd(), 'screens/cards_second_lvl/cards_second_lvl.kv'),
-        os.path.join(os.getcwd(), 'screens/dataframe/dataframe.kv'),
+        os.path.join(os.getcwd(), 'screens/languages/languages.kv'),
 
     }
 
     CLASSES = {
-        'MainScreenManager': 'screens.screen_manager',
+        'Manager': 'screens.screen_manager',
         'MenuScreen': 'screens.menu.menu',
         'CardsFirstLevelScreen': 'screens.cards_first_lvl.cards_first_lvl',
         'CardsSecondLevelScreen': 'screens.cards_second_lvl.cards_second_lvl',
         'DataFrameScreen': 'screens.dataframe.dataframe',
+        'LanguagesScreen': 'screens.languages.languages',
     }
 
     AUTORELOADER_PATHS = [
@@ -30,7 +31,7 @@ class GenFlashcards(MDApp, App):
     ]
 
     def build_app(self):
-        return Factory.MainScreenManager()
+        return Factory.Manager()
 
     def theme_dark(self):
         self.theme_cls.theme_style = 'Dark'

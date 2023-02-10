@@ -1,5 +1,5 @@
-from kivy.uix.screenmanager import ScreenManager
+from kivymd.uix.screenmanager import MDScreenManager
 
 
-class MainScreenManager(ScreenManager):
+class Manager(MDScreenManager):
     pass

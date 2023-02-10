@@ -8,4 +8,4 @@ class DataFrameScreen(MDScreen):
 
     def selected(self, selection):
         if selection:
-            self.root.ids.selected_path.text = selection[0]
+            self.ids.selected_path.text = selection[0]

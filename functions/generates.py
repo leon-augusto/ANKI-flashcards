@@ -1,5 +1,8 @@
 import genanki
 import gtts
+from datetime import datetime
+from pathlib import Path
+import os
 
 def gen_filename(base, extension):
     name = base
@@ -11,13 +14,14 @@ def gen_filename(base, extension):
     name += extension
     return name
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 def gen_audios(phrases, language):
     files = []
     for phrase in phrases:
         speech = gtts.gTTS(phrase, lang=language)
         filename = gen_filename(base=phrase, extension='.mp3')
-        speech.save('media//listening//' + filename)
+        speech.save(os.path.join(BASE_DIR, 'media', 'listening' + filename))
         files.append(filename)
     return files
 
@@ -58,8 +62,9 @@ def gen_apkg(deck):
 
         my_deck.add_note(my_note)
 
-    genanki.Package(my_deck).write_to_file('my-new-cards.apkg')
+    genanki.Package(my_deck).write_to_file(f'my-new-cards_{datetime.today()}.apkg'.replace(' ', '_'))
 
 
 if __name__ == '__main__':
+    print(f'my-new-cards_{datetime.today()}.apkg'.replace(' ', '_'))
     print(gen_filename('"Hello, World!"', '.mp3'))

@@ -24,8 +24,8 @@
             id: lang
             size_hint: 0.4, 0.07
             pos_hint: {'center': (.75, .5)}
-            text: 'en'
-            values: 'en', 'es', 'fr', 'zh-CN'
+            text: 'langs'
+            values: root.load_langs()
 
         MDFillRoundFlatButton:
             text: 'Generate Deck'

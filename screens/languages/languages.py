@@ -62,13 +62,13 @@ class LanguagesScreen(MDScreen):
 
     def load_data(self,*args):
         try:
-            with open(self.path+'data.json','r') as data:
+            with open(self.path+'builder-deck-langs.json','r') as data:
                 self.languages = json.load(data)
         except FileNotFoundError:
             pass
 
     def save_data(self,*args):
-        with open(self.path+'data.json','w') as data:
+        with open(self.path+'builder-deck-langs.json','w') as data:
             json.dump(self.languages, data)
 
     def remove_lang(self, language):

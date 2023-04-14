@@ -1,18 +1,47 @@
+import dragonmapper
+from dragonmapper import hanzi
 import genanki
 import gtts
 from datetime import datetime
 from pathlib import Path
 import os
 
-def gen_filename(base, extension):
-    name = base
-    special_chars = ['!', '@', '#', '$', '%', '¨', '&', '*', '(', ')', '_', '+', '=', '§', '/', '?', '°', '®', 'ŧ', '←', '↓', '→', 'ø', 'þ', '`', '´', '{', '[', 'ª', '}', ']', 'º', '~', '^', ';', ':', '>', '.', '<', ',', 'µ', '”', '“', '©', '»', '«', 'æ', 'ß', 'ð', 'đ', 'ŋ', 'ħ', 'ˀ', 'ĸ', 'ł', 'ˇ', '\ ', '|', '+', '-', '*', '/', '"']
-    for character in special_chars:
-        if character in name:
-            name = name.replace(character, '')
-    name = name.replace(' ', '-').lower()
-    name += extension
-    return name
+def gen_filename(base, lang, extension):
+    base = base
+    special_chars = ['!', '@', '#', '$', '%', '¨', '&', '*', '(', ')', '_', '+', '=', '§', '/', '?', '°', '®', 'ŧ', '←',
+                     '↓', '→', 'ø', 'þ', '`', '´', '{', '[', 'ª', '}', ']', 'º', '~', '^', ';', ':', '>', '.', '<', ',',
+                     'µ', '”', '“', '©', '»', '«', 'æ', 'ß', 'ð', 'đ', 'ŋ', 'ħ', 'ˀ', 'ĸ', 'ł', 'ˇ', '\ ', '|', '+',
+                     '-', '*', '/', '"']
+
+    if lang == 'zh-CN':
+        if dragonmapper.hanzi.is_simplified(base):
+            base = dragonmapper.hanzi.to_pinyin(base)
+            special_chars += ['“', '”', '=', '、', '：', '；', '？', '！', '。']
+            accented_vowels = {'a': ['ā', 'á', 'ǎ', 'à',],
+                               'e': ['ē', 'é', 'ě', 'è',],
+                               'i': ['ī', 'í', 'ǐ', 'ì',],
+                               'o': ['ō', 'ó', 'ǒ', 'ò',],
+                               'u': ['ū', 'ú', 'ǔ', 'ù', 'ü']}
+
+            for character in special_chars:
+                if character in base:
+                    base = base.replace(character, '')
+
+            for vowel in accented_vowels:
+                for character in accented_vowels[vowel]:
+                    if character in base:
+                        base = base.replace(character, vowel)
+
+        base = base.replace(' ', '-').lower()
+        base += extension
+    else:
+        for character in special_chars:
+            if character in base:
+                base = base.replace(character, '')
+        base = base.replace(' ', '-').lower()
+        base += extension
+
+    return base
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,8 +49,8 @@ def gen_audios(phrases, language):
     files = []
     for phrase in phrases:
         speech = gtts.gTTS(phrase, lang=language)
-        filename = gen_filename(base=phrase, extension='.mp3')
-        speech.save(os.path.join(BASE_DIR, 'media', 'listening' + filename))
+        filename = gen_filename(base=phrase, lang=language, extension='.mp3')
+        speech.save(os.path.join(BASE_DIR, 'media', 'listening', filename))
         files.append(filename)
     return files
 
@@ -66,5 +95,4 @@ def gen_apkg(deck):
 
 
 if __name__ == '__main__':
-    print(f'my-new-cards_{datetime.today()}.apkg'.replace(' ', '_'))
-    print(gen_filename('"Hello, World!"', '.mp3'))
+    print(gen_filename('"我是Leon。"', 'zh-CN', '.mp3'))

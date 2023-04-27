@@ -1,7 +1,7 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 
-from functions.creates import create_intermediary_cards
+from decks_builder.views import create_intermediary_cards
 import json
 
 

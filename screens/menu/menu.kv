@@ -11,7 +11,7 @@
     FloatLayout:
 
         MDTopAppBar:
-            title: 'Gen ANKI - flashcards'
+            title: 'Decks Builder'
             elevation: 2
             pos_hint: {'top': True}
             left_action_items: [['menu', lambda x: nav_drawer.set_state('open')]]
@@ -50,7 +50,7 @@
             MDNavigationDrawerHeader:
                 title: 'KivyMD'
                 text: 'v1.1.1'
-                source: 'media/logo-project.png'
+                source: 'assets/confia.png'
                 spacing: '10dp'
                 padding: '12dp', 0, 0, '50dp'
 
@@ -64,9 +64,9 @@
                 color: '#4A463A'
 
             DrawerItem:
-                icon: 'moon-waning-crescent'
+                icon: app.change_icon()
                 text: 'Theme'
-                on_press: app.theme_dark()
+                on_press: app.change_theme()
 
             DrawerItem:
                 icon: 'wrench'

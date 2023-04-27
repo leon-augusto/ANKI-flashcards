@@ -11,11 +11,17 @@ class MainApp(MDApp):
     def build(self):
         return Manager()
 
-    def theme_dark(self):
-        self.theme_cls.theme_style = 'Dark'
+    def change_icon(self):
+        if self.theme_cls.theme_style == 'Light':
+            return 'moon-waning-crescent'
+        else:
+            return 'weather-sunny'
 
-    def theme_light(self):
-        self.theme_cls.theme_style = 'Light'
+    def change_theme(self):
+        if self.theme_cls.theme_style == 'Light':
+            self.theme_cls.theme_style = 'Dark'
+        else:
+            self.theme_cls.theme_style = 'Light'
 
 
 if __name__ == '__main__':
